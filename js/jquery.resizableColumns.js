@@ -95,7 +95,7 @@ var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments)
     ResizableColumns.prototype.saveColumnWidths = function() {
       var _this = this;
 
-      return this.$tableHeaders.each(function(_, el) {
+      this.$tableHeaders.each(function(_, el) {
         var $el;
 
         $el = $(el);
@@ -105,6 +105,10 @@ var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments)
           }
         }
       });
+      if (typeof this.options.afterResize === 'function') {
+        this.options.afterResize.call(this);
+      }
+      return this;
     };
 
     ResizableColumns.prototype.restoreColumnWidths = function() {
